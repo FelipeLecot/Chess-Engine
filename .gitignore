@@ -1,0 +1,66 @@
+# Compiled object files
+*.o
+*.obj
+*.elf
+
+# Executables
+*.exe
+*.out
+*.app
+chess
+chess_engine
+engine
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Static and dynamic libraries
+*.lib
+*.a
+*.la
+*.lo
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Build directories
+build/
+dist/
+bin/
+obj/
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Dependency files
+*.d
+
+# Test output files
+test_output/
+*.log
+
+# Profiling and coverage
+*.gcda
+*.gcno
+*.gcov
+gmon.out
+callgrind.out.*
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+
+# Backup files
+*.bak
+*.backup
+*_test.o
+board_test.o
