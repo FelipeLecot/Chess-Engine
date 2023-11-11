@@ -70,6 +70,6 @@ enum CASTLING {K=1, Q=2, k=4, q=8};
 
 enum FILES {H, G, F, E, D, C, B, A};
 
-extern char SQUARE_NAMES[64][3];
+extern char SQUARES[64][3];
 
 #endif
