@@ -1,3 +1,8 @@
+# Recommended Read
+[Technical documentation on how chess engines work](https://www.felipelecot.com/docs/chess-engine)
+
+# Chess Engine
+
 ## Overview
 Chess engine written in C with UCI protocol support. Features bitboard-based move generation, alpha-beta search with transposition tables, and piece-square table evaluation. Can interface with any UCI-compatible chess GUI.
 
