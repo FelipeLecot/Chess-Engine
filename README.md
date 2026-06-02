@@ -1,5 +1,5 @@
 # Recommended Read
-[Technical documentation on how chess engines work](https://www.felipelecot.com/docs/chess-engine)
+[Technical documentation on how chess engines work](https://www.felipelecot.com/docs/chess-engines)
 
 # Chess Engine
 
