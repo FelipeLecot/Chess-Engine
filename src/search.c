@@ -16,9 +16,14 @@ static int alphabeta(Board board, int depth, int alpha, int beta, SearchContext*
 int search(Board board, int depth, SearchContext* ctx) {
     memset(&ctx->bestMove, 0, sizeof(Move));
     ctx->nodesSearched = 0;
-    ctx->maxDepth = depth;
 
-    int eval = alphabeta(board, depth, MIN_EVAL, MAX_EVAL, ctx);
+    int eval = 0;
+    for (int d = 1; d <= depth; d++) {
+        ctx->maxDepth = d;
+        eval = alphabeta(board, d, MIN_EVAL, MAX_EVAL, ctx);
+        if (ctx->onDepthComplete)
+            ctx->onDepthComplete(d, eval, ctx->nodesSearched);
+    }
     return eval;
 }
 

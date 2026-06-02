@@ -10,6 +10,7 @@ typedef struct {
     int nodesSearched;     /* Total number of nodes evaluated during search */
     Move bestMove;         /* Best move found at root of search tree */
     int maxDepth;          /* Maximum depth limit for current search iteration */
+    void (*onDepthComplete)(int depth, int eval, int nodes); /* Called after each iteration; may be NULL */
 } SearchContext;
 
 /* Perform alpha-beta search to find best move

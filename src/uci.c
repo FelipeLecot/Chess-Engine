@@ -103,30 +103,43 @@ void parsePosition(char *command, Board *board) {
     }
 }
 
+static clock_t go_start;
+
+static void onDepthComplete(int depth, int eval, int nodes) {
+    double ms = (double)(clock() - go_start) * 1000 / CLOCKS_PER_SEC;
+    printf("info depth %d score cp %d nodes %d time %.0f\n", depth, eval, nodes, ms);
+}
+
 void parseGo(char *command, Board board) {
     int depth = DEFAULT_DEPTH;
-    
+
     char *depthStr = strstr(command, "depth");
     if (depthStr != NULL) {
         depthStr += 5;
         while (*depthStr == ' ') depthStr++;
-        
+
         int parsedDepth = atoi(depthStr);
         if (parsedDepth > 0 && parsedDepth <= MAX_DEPTH) {
             depth = parsedDepth;
         }
     }
 
-    SearchContext ctx;
-    clock_t start = clock();
+    SearchContext ctx = { .onDepthComplete = onDepthComplete };
+    go_start = clock();
     int eval = search(board, depth, &ctx);
-    clock_t end = clock();
-    double time_spent = (double)(end - start) * 1000 / CLOCKS_PER_SEC;
+    double time_spent = (double)(clock() - go_start) * 1000 / CLOCKS_PER_SEC;
 
-    printf("Info:\n Depth: %d\n Time %.0f\n Nodes %d\n Score %d\n", depth, time_spent, ctx.nodesSearched, eval);
+    printf("info depth %d score cp %d nodes %d time %.0f\n", depth, eval, ctx.nodesSearched, time_spent);
 
     char san[6];
     memset(san, 0, sizeof(san));
     moveToSan(ctx.bestMove, san);
     printf("bestmove %s\n", san);
+}
+
+void printEngineInfo(void) {
+    printf("id name %s\n", ENGINE_NAME);
+    printf("id author %s\n", AUTHOR);
+    printf("uciok\n");
+    fflush(stdout);
 }
